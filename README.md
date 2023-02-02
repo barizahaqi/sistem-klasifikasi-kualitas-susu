@@ -55,12 +55,15 @@ Dataset ini berisi 1059 sampel yang tediri dari variabel-variabel berikut.
 Pada 1059 sampel di dataset *milkquality*, terdapat beberapa outlier pada data numeriknya yang diperlihatkan pada Gambar 2, 3 dan 4.
 
 ![alt text](/img/outlier_ph.png) 
+
 Gambar 2. Outlier pada variabel pH
 
 ![alt text](/img/outlier_temperature.png) 
+
 Gambar 3. Outlier pada variabel Temperature
 
 ![alt text](/img/outlier_colour.png) 
+
 Gambar 4. Outlier pada variabel Colour
 
 Pada diagram-diagram di atas terdapat outlier pada kolom pH, Temperature dan Colour sehingga harus dihilangkan terlebih dahulu dengan metode IQR yaitu menghilangkan batas bawah yang bernilai Q1-1.5\*IQR dan batas atas yang bernilai Q1+1.5\*IQR.
