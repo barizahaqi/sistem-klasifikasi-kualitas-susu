@@ -78,7 +78,7 @@ milk = milk[~((milk<(Q1-1.5*IQR))|(milk>(Q3+1.5*IQR))).any(axis=1)])
 Setelah melukakan drop outliers, jumlah sampel yang ada pada dataset berkurang menjadi 648 sampel.
 
 Distribusi numerik pada dataset diperlihatkan pada Gambar 5.
-![alt text](/img/outlier_distribution.png) 
+![alt text](/img/distribution.png) 
 Gambar 5. Distribusi numerik pada variabel pH, Temperature dan Colour
 
 Dari informasi diatas didapat beberapa kesimpulan yaitu:
