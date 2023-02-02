@@ -33,6 +33,7 @@ Untuk mencapai tujuan tersebut, dalam proyek ini akan dibuat beberapa model yang
 Dataset yang diguanakan pada proyek ini adalah [data prediksi kualitas susu](https://www.kaggle.com/datasets/cpluzshrijayan/milkquality). Lima sampel teratas diperlihatkan pada Tabel 1. 
 
 Tabel 1. Lima sampel teratas pada dataset *milkquality*
+
 | PH  | Temprature | Taste | Odor | Fat | Turbidity | Colour | Grade  |
 |-----|------------|-------|------|-----|-----------|--------|--------|
 | 6.6 | 35         | 1     | 0    | 1   | 0         | 254    | high   |
@@ -40,6 +41,7 @@ Tabel 1. Lima sampel teratas pada dataset *milkquality*
 | 8.5 | 70         | 1     | 1    | 1   | 1         | 246    | low    |
 | 9.5 | 34         | 1     | 1    | 0   | 1         | 255    | low    |
 | 6.6 | 37         | 0     | 0    | 0   | 0         | 255    | medium |
+
 Dataset ini berisi 1059 sampel yang tediri dari variabel-variabel berikut.
 - *pH* : merupakan pH susu yang berkisar antara 3 sampai 9.5.
 - *Temprature* : merupakan suhu susu yang berkisar antara 34'C sampai 90'C.
@@ -135,11 +137,12 @@ Pelatihan ketiga metode diatas menggunakan metrik *Cross validation score* denga
 Dari ketiga algoritma tersebut diperoleh rata-rata nilai akurasi masing-masing yang ditunjukkan pada Tabel 2.
 
 Tabel 2. Hasil rata-rata akurasi Algoritma KNN, Random Forest dan Boosting dengan cv = 5
+
 |       | KNN      | RandomForest | Boosting |
 |-------|----------|--------------|----------|
 | score | 0.980657 | 0.994212     | 0.990246 |
 
-Dari nilai pada tabel di atas dipilihlah algoritma *random forest* karena memiliki rata-rata akurasi paling besar di antara semua algoritma.
+Dari nilai pada tabel di atas dipilihlah Algoritma *Random Forest* karena memiliki rata-rata akurasi paling besar di antara semua algoritma.
 
 ## Evaluation
 Pada proyek ini, model yang dibuat merupakan kasus klasifikasi dan menggunakan metriks akurasi yaitu *cross_val_score*. *Cross validation score* berasal dari formula K-Fold Cross Validation yang digunakan untuk menangani masalah overfitting [[2](https://towardsdatascience.com/cross-validation-explained-evaluating-estimator-performance-e51e5430ff85)].
