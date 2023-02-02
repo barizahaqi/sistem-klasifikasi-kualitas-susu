@@ -4,9 +4,6 @@
 
 ![alt text](http://asset-a.grid.id/crop/0x0:0x0/750x500/photo/intisarifoto/original/5741_benarkah-kualitas-susu-segar-lebih-baik-dari-susu-bubuk.jpg)
 
-Domain yang dipilih untuk proyek machine learning ini adalah Kesehatan, dengan judul Klasifikasi Kualitas Susu
-
-- Latar Belakang
 Susu merupakan minuman sumber protein hewani yang sangat penting bagi kesehatan manusia. [Kualitas susu sapi merupakan hal yang sangat penting](https://www.nestle.co.id/kisah/susu-sapi-berkualitas-untuk-konsumsi-sehari-hari). Susu sapi berkualitas selain mengandung protein juga mengandung vitamin dan mineral yang dapat membantu menjaga kesehatan tubuh. Manfaat dari susu sapi berkualitas sendiri melalui nutrisi-nutrisi yang terdapat di dalamnya, antara lain membantu perkembangan dan pemeliharaan tulang dan otot, meningkatkan kesehatan otak seperti meningkatkan daya ingat dan ketajaman, serta meningkatkan metabolisme tubuh. Untuk itu diperlukan cara untuk menentukan kualiatas susu yang baik dengan cepat. Salah satu cara untuk menentukan kualitas susu adalah dengan menggunakan machine learning dengan metode klasifikasi dari data-data observasi yang didapat. Dengan ini, produsen susu dapat menjual produknya dengan kualiatas yang terbaik.
 
 ## Business Understanding
@@ -32,7 +29,7 @@ Untuk mencapai tujuan tersebut, dalam proyek ini akan dibuat beberapa model yang
 
 ## Data Understanding
 Dataset yang diguanakan pada proyek ini adalah [data prediksi kualitas susu](https://www.kaggle.com/datasets/cpluzshrijayan/milkquality). Dataset ini berisi 1059 sampel yang tediri dari variabel-variabel pada tabel di bawah.
-![alt text](/img/data.png)
+![alt text](https://cdn.discordapp.com/attachments/1057602032569155587/1070698070091763732/2.png)
 Berikut adalah penjelasan untuk tiap variabelnya.
 - pH : merupakan pH susu yang berkisar antara 3 sampai 9.5.
 - Temprature : merupakan suhu susu yang berkisar antara 34'C sampai 90'C.
@@ -44,7 +41,7 @@ Berikut adalah penjelasan untuk tiap variabelnya.
 - Grade : merupakan kualitas susu yang terdiri dari low(rendah), medium(sedang) dan high(tinggi).
 
 Untuk distribusi data numeriknya adalah sebagai berikut.
-![alt text](/img/distribution.png)
+![alt text](https://cdn.discordapp.com/attachments/1057602032569155587/1070698985683173486/image.png)
 Dari informasi diatas didapat beberapa kesimpulan yaitu semua diagram tidak terdistribusi merata.
 
 - Pada Diagram ph sampel terbagi menjadi 4 bagian dengan kenaikan mendekati 0.1 tiap bagian.
@@ -65,7 +62,7 @@ Kekurangan dari KNN adalah tidak berfungsi dengan baik pada dataset berukuran be
 
 Dari ketiga ketiga algoritma tersebut diperoleh rata-rata nilai akurasi masing masing sebagai berikut
 
-![alt text](/img/mean.png)
+![alt text](https://cdn.discordapp.com/attachments/1057602032569155587/1070698070427316314/3.png)
 
 Dari nilai di atas dipilihlah algoritma random forest karena memiliki rata-rata akurasi paling besar di antara semua algoritma.
 
