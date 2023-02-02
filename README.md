@@ -104,13 +104,13 @@ ghbor
 knn = KNeighborsClassifier(n_neighbors=5)
 # Latih model
 knn.fit(X_train, y_train)
-models.loc['score', 'KNN'] = cross_val_score(knn, X_train, y_train, scoring="accuracy", cv= 5).mean()
+models.loc['score', 'KNN'] = cross_val_score(knn, X_train, y_train, scoring="accuracy", cv=5).mean()
 ```
 
 Kelebihan dari *KNN* adalah mudah diterapkan, mudah beradaptasi dan memiliki sedikit *hyperparameter*.
 Kekurangan dari *KNN* adalah tidak berfungsi dengan baik pada dataset berukuran besar, Kurang cocok untuk dimensi tinggi, perlu penskalaan fitur dan sensitif terhadap noise data,* missing values* dan *outliers*.
 
-Pada*Random Forest*, *n_estimator* atau jumlah pohon yang dipilih sebanyak 20, maks kedalamannya adalah 16, nilai *random number generator*-nya adalah 43 dan *n_jobs* nya bernilai -1 yang berarti semua proses berjalan secara paralel. Berikut adalah *source* kodenya.
+Pada *Random Forest*, *n_estimator* atau jumlah pohon yang dipilih sebanyak 20, maks kedalamannya adalah 16, nilai *random number generator*-nya adalah 43 dan *n_jobs* nya bernilai -1 yang berarti semua proses berjalan secara paralel. Berikut adalah *source* kodenya.
 
 ```sh
 # Lakukan analisis menggunakan Random Forest
@@ -118,10 +118,10 @@ rf = RandomForestClassifier(n_estimators=20, max_depth=16, random_state=43, n_jo
 
 # Latih model
 rf.fit(X_train, y_train)
-models.loc['score','RandomForest'] = cross_val_score(rf, X_train, y_train, scoring="accuracy", cv= 5).mean()
+models.loc['score','RandomForest'] = cross_val_score(rf, X_train, y_train, scoring="accuracy", cv=5).mean()
 ```
 
-Kelebihan *Random Forest* yaitu dapat mengatasi *noise* dan *missing value* serta dapat mengatasi data dalam jumlah yang besar. Kekurangan pada algoritma *Random Forest* yaitu interpretasi yang sulit dan membutuhkan *tuning* model yang tepat untuk data.
+Kelebihan *Random Forest* yaitu dapat mengatasi *noise* dan *missing value* serta dapat mengatasi data dalam jumlah yang besar. Kekurangan pada Algoritma *Random Forest* yaitu interpretasi yang sulit dan membutuhkan *tuning* model yang tepat untuk data.
 
 Pada Algoritma *Boosting*, nilai *learning_rate* yang dipilih adalah 0.05 dengan *random number generator* bernilai 43. Berikut adalah *source* kodenya.
 
@@ -131,7 +131,7 @@ boosting = AdaBoostClassifier(learning_rate=0.05, random_state=43)
 
 # Latih model                            
 boosting.fit(X_train, y_train)
-models.loc['score','Boosting'] = cross_val_score(boosting, X_train, y_train, scoring="accuracy", cv= 5).mean()
+models.loc['score','Boosting'] = cross_val_score(boosting, X_train, y_train, scoring="accuracy", cv=5).mean()
 ```
 
 Kelebihan Algoritma *Boosting* adalah kemudahan implementasi, pengurangan bias dan efisiensi komputasional. Kekurangan Algoritma *Boosting* adalah kelemahan terhadap data *outlier* dan implementasi waktu nyata
@@ -161,7 +161,7 @@ Berikut adalah *source* kode proses evaluasi model.
 
 ```sh
 # Evaluasi akurasi model
-result_accuracy = cross_val_score(rf, X_test, y_test, scoring="accuracy", cv= 5).mean()
+result_accuracy = cross_val_score(rf, X_test, y_test, scoring="accuracy", cv=5).mean()
 ```
 
 Dari metrik tersebut kemudian diambil rata-ratanya sehingga menghasilkan rata-rata nilai akurasi sebesar 0.976923076923077.
@@ -169,7 +169,7 @@ Dari metrik tersebut kemudian diambil rata-ratanya sehingga menghasilkan rata-ra
 ## Kesimpulan
 Dari hasil evaluasi dapat disimpulkan bahwa Algoritma *Random Forest* sangat cocok digunakan sebagai model dalam proyek ini. Hasil akurasi dan akurasi validasi yang didapatkan sangat besar. Dengan hasil ini, diharapkan model *machine learning* yang telah dibuat ini dapat bermanfaat untuk dikembangkan dan digunakan pada pengklasifikasian kualitas susu.
 
-Referensi
+## Referensi
 [[1](https://repository.ipb.ac.id/handle/123456789/26133)] Sinaga, Kurniawan. (2000). "Kualitas Susu Sapi Berdasarkan Kepemilikan di Kawasan Usaha Peternakan Cibungbulang, Kabupaten Bogor". https://repository.ipb.ac.id/handle/123456789/26133
 
 [[2](https://towardsdatascience.com/cross-validation-explained-evaluating-estimator-performance-e51e5430ff85)] Shaikh, Rahil. (2018). "Cross Validation Explained: Evaluating estimator performance". https://towardsdatascience.com/cross-validation-explained-evaluating-estimator-performance-e51e5430ff85
