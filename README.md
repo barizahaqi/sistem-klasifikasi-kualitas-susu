@@ -67,14 +67,7 @@ Gambar 3. Outlier pada variabel Temperature
 Gambar 4. Outlier pada variabel Colour
 
 Pada diagram-diagram di atas terdapat outlier pada kolom pH, Temperature dan Colour sehingga harus dihilangkan terlebih dahulu dengan metode IQR yaitu menghilangkan batas bawah yang bernilai Q1-1.5\*IQR dan batas atas yang bernilai Q1+1.5\*IQR.
-Berikut adalah source kodenya.
 
-```sh
-Q1 = milk.quantile(0.25)
-Q3 = milk.quantile(0.75)
-IQR = Q3-Q1
-milk = milk[~((milk<(Q1-1.5*IQR))|(milk>(Q3+1.5*IQR))).any(axis=1)])
-```
 Setelah melukakan drop outliers, jumlah sampel yang ada pada dataset berkurang menjadi 648 sampel.
 
 Distribusi numerik pada dataset diperlihatkan pada Gambar 5.
@@ -94,50 +87,18 @@ Teknik yang digunakan dalam penyiapan adalah sebagai berikut.
 - Standarisasi dengan menggunakan *StandardScaler* untuk membuat fitur data memiliki skala relatif sama sehingga mudah diolah oleh algoritma. *StandardScaler* melakukan proses standarisasi fitur dengan mengurangkan *mean* (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi.
 
 ## Modeling
-Pada proses modeling akan dibuat sebuah models yang tediri dari variabel *KNN*, *RandomForest* dan *Boosting*. 
+Pada proses modeling akan dibuat sebuah models yang tediri dari variabel *KNN*, *RandomForest* dan *Boosting* dengan nilai *score*-nya masing-masing. 
 
-Pada *KNN*, nilai *n_neighbors* yang dipilih adalah 5 tetangga. Berikut adalah *source* kodenya.
+Pada *KNN*, nilai *n_neighbors* yang dipilih adalah 5 tetangga. *KNN* akan bekerja dengan membandingkan jarak satu sampel ke sampel pelatihan lain dengan memilih sejumlah 5 tetangga terdekat.
+Kelebihan dari *KNN* adalah mudah diterapkan, mudah beradaptasi dan memiliki sedikit *hyperparameter*. Kekurangan dari *KNN* adalah tidak berfungsi dengan baik pada dataset berukuran besar, Kurang cocok untuk dimensi tinggi, perlu penskalaan fitur dan sensitif terhadap noise data,* missing values* dan *outliers*.
 
-```sh
-# Lakukan analisis menggunakan K-Nearest Nei
-ghbor
-knn = KNeighborsClassifier(n_neighbors=5)
-# Latih model
-knn.fit(X_train, y_train)
-models.loc['score', 'KNN'] = cross_val_score(knn, X_train, y_train, scoring="accuracy", cv=5).mean()
-```
-
-Kelebihan dari *KNN* adalah mudah diterapkan, mudah beradaptasi dan memiliki sedikit *hyperparameter*.
-Kekurangan dari *KNN* adalah tidak berfungsi dengan baik pada dataset berukuran besar, Kurang cocok untuk dimensi tinggi, perlu penskalaan fitur dan sensitif terhadap noise data,* missing values* dan *outliers*.
-
-Pada *Random Forest*, *n_estimator* atau jumlah pohon yang dipilih sebanyak 20, maks kedalamannya adalah 16, nilai *random number generator*-nya adalah 43 dan *n_jobs* nya bernilai -1 yang berarti semua proses berjalan secara paralel. Berikut adalah *source* kodenya.
-
-```sh
-# Lakukan analisis menggunakan Random Forest
-rf = RandomForestClassifier(n_estimators=20, max_depth=16, random_state=43, n_jobs=-1)
-
-# Latih model
-rf.fit(X_train, y_train)
-models.loc['score','RandomForest'] = cross_val_score(rf, X_train, y_train, scoring="accuracy", cv=5).mean()
-```
-
+Pada *Random Forest*, *n_estimator* atau jumlah pohon yang dipilih sebanyak 20, maks kedalamannya adalah 16, nilai *random number generator*-nya adalah 43 dan *n_jobs* nya bernilai -1 yang berarti semua proses berjalan secara paralel. *Random Forest* akan membuat prediksi secara independen dengan nilai estimator 20 dan maksimal kedalaman 16. Kemudian, prediksi dari setiap bagian ini digabungkan untuk membuat prediksi akhir.
 Kelebihan *Random Forest* yaitu dapat mengatasi *noise* dan *missing value* serta dapat mengatasi data dalam jumlah yang besar. Kekurangan pada Algoritma *Random Forest* yaitu interpretasi yang sulit dan membutuhkan *tuning* model yang tepat untuk data.
 
-Pada Algoritma *Boosting*, nilai *learning_rate* yang dipilih adalah 0.05 dengan *random number generator* bernilai 43. Berikut adalah *source* kodenya.
-
-```sh
-# Lakukan analisis menggunakan AdaBoost
-boosting = AdaBoostClassifier(learning_rate=0.05, random_state=43)
-
-# Latih model                            
-boosting.fit(X_train, y_train)
-models.loc['score','Boosting'] = cross_val_score(boosting, X_train, y_train, scoring="accuracy", cv=5).mean()
-```
-
+Pada Algoritma *Boosting*, nilai *learning_rate* yang dipilih adalah 0.05 dengan *random number generator* bernilai 43. Algoritma ini akan bekerja dalam beberapa model dan setiap model akan memperbaiki kesalahan model sebelumnya dengan tingkat pembelajaran sebesar 0.05 dan maksimal jumlah estimator yang diterminasinya sebesar nilai *default*-nya yaitu 50.
 Kelebihan Algoritma *Boosting* adalah kemudahan implementasi, pengurangan bias dan efisiensi komputasional. Kekurangan Algoritma *Boosting* adalah kelemahan terhadap data *outlier* dan implementasi waktu nyata
 
-Pelatihan ketiga metode diatas menggunakan metrik *Cross validation score* dengan memasukan model, data *train* dan *cross validation* bernilai 5 untuk mendapatkan rata-rata akurasinya.
-Dari ketiga algoritma tersebut diperoleh rata-rata nilai akurasi masing-masing yang ditunjukkan pada Tabel 2.
+Dari ketiga algoritma tersebut diperoleh rata-rata nilai akurasi dari hasil metrik cross validation score menggunakan data latih yang ditunjukkan pada Tabel 2.
 
 Tabel 2. Hasil rata-rata akurasi Algoritma KNN, Random Forest dan Boosting dengan cv = 5
 
@@ -156,13 +117,6 @@ Langkah-langkah kerja *cross validation score* adalah sebagai berikut.
 - Model dilatih dan diuji untuk setiap lipatan.
 - Setiap lipatan mengembalikan metrik untuk data pengujiannya.
 - Deviasi rata-rata dan standar dari metrik ini kemudian dapat dihitung untuk memberikan satu metrik yang digunakan untuk proses tersebut.
-
-Berikut adalah *source* kode proses evaluasi model.
-
-```sh
-# Evaluasi akurasi model
-result_accuracy = cross_val_score(rf, X_test, y_test, scoring="accuracy", cv=5).mean()
-```
 
 Dari metrik tersebut kemudian diambil rata-ratanya sehingga menghasilkan rata-rata nilai akurasi sebesar 0.976923076923077.
 
